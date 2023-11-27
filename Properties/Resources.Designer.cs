@@ -73,6 +73,16 @@ namespace SecureCodeFull.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Left_Panel {
+            get {
+                object obj = ResourceManager.GetObject("Left Panel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap login3 {
             get {
                 object obj = ResourceManager.GetObject("login3", resourceCulture);
