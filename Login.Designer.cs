@@ -69,7 +69,7 @@ namespace SecureCodeFull
             this.txtBoxUser.Name = "txtBoxUser";
             this.txtBoxUser.Size = new System.Drawing.Size(250, 22);
             this.txtBoxUser.TabIndex = 1;
-            this.txtBoxUser.TextChanged += new System.EventHandler(this.txtBoxUser_TextChanged);
+
             // 
             // txtBoxPass
             // 
@@ -119,7 +119,7 @@ namespace SecureCodeFull
             this.btnValidar.TabIndex = 5;
             this.btnValidar.Text = "Validar";
             this.btnValidar.UseVisualStyleBackColor = false;
-            this.btnValidar.Click += new System.EventHandler(this.validarUsuarioClick);
+
             // 
             // lblBenvingut
             // 
