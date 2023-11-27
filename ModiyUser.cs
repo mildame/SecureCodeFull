@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace SecureCodeFull
 {
     public partial class ModiyUser : Form
     {
+        HashUtils.HashUser hsh = new HashUtils.HashUser();
         private Timer timer;
 
         public ModiyUser()
@@ -35,13 +37,22 @@ namespace SecureCodeFull
         private void button1_Click(object sender, EventArgs e)
         {
             bool confirm;
+            string salt;
+            string password;
+            string passwordSalt;
+            string hashPass;
 
             confirm = checkPassword(textBox1.Text, textBox2.Text);
 
             if (confirm)
             {
+                salt = hsh.createSalt();
+                password = hsh.createPassword(label1.Text);
+                passwordSalt = password + salt;
+                hashPass = hsh.hashPassword(passwordSalt); //hashed password para guardaar a la basede dades
+
                 label3.Hide();
-                MessageBox.Show("Correct Pass");
+                MessageBox.Show("Password Saved");
                 this.Hide();
                //when confirm, close the modal 
             }

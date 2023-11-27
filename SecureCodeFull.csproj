@@ -140,5 +140,11 @@
   <ItemGroup>
     <None Include="images\hyperspae.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HashUtils\HashUtils.csproj">
+      <Project>{c50b6160-00fe-45ef-8b17-2990494af9ec}</Project>
+      <Name>HashUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
