@@ -7,11 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace SecureCodeFull
 {
     public partial class Login : Form
     {
+        //SQL CONNECTION
+        SqlConnection conn;
+        String query = "Select * from users";
+        
+        //ORIGINAL VARIABLES
         protected bool isDragging = false;
         protected Rectangle lastRectangle;
         protected string[] missatges = { "Benvingut, ", "ACCES DENEGAT", "Verificant nivell d'acces" };
