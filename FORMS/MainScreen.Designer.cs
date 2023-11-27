@@ -34,7 +34,7 @@ namespace SecureCodeFull
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.btnExitLogin = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.pnlGeneral = new System.Windows.Forms.Panel();
             this.pnlForm = new System.Windows.Forms.Panel();
             this.pnlSideBar = new System.Windows.Forms.Panel();
@@ -98,21 +98,21 @@ namespace SecureCodeFull
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // btnExitLogin
+            // btnExit
             // 
-            this.btnExitLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExitLogin.BackColor = System.Drawing.Color.Transparent;
-            this.btnExitLogin.BackgroundImage = global::SecureCodeFull.Properties.Resources.SalirButton;
-            this.btnExitLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnExitLogin.FlatAppearance.BorderSize = 0;
-            this.btnExitLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExitLogin.ForeColor = System.Drawing.Color.Transparent;
-            this.btnExitLogin.Location = new System.Drawing.Point(736, 3);
-            this.btnExitLogin.Name = "btnExitLogin";
-            this.btnExitLogin.Size = new System.Drawing.Size(28, 30);
-            this.btnExitLogin.TabIndex = 10;
-            this.btnExitLogin.UseVisualStyleBackColor = false;
-            this.btnExitLogin.Click += new System.EventHandler(this.btnExitLogin_Click_1);
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.BackColor = System.Drawing.Color.Transparent;
+            this.btnExit.BackgroundImage = global::SecureCodeFull.Properties.Resources.SalirButton;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.ForeColor = System.Drawing.Color.Transparent;
+            this.btnExit.Location = new System.Drawing.Point(736, 3);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(28, 30);
+            this.btnExit.TabIndex = 10;
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExitLogin_Click_1);
             // 
             // pnlGeneral
             // 
@@ -179,7 +179,7 @@ namespace SecureCodeFull
             // pnlTopBar
             // 
             this.pnlTopBar.AutoSize = true;
-            this.pnlTopBar.Controls.Add(this.btnExitLogin);
+            this.pnlTopBar.Controls.Add(this.btnExit);
             this.pnlTopBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTopBar.Location = new System.Drawing.Point(33, 22);
             this.pnlTopBar.Name = "pnlTopBar";
@@ -218,7 +218,7 @@ namespace SecureCodeFull
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button btnExitLogin;
+        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Panel pnlGeneral;
         private System.Windows.Forms.Panel pnlSideBar;
         private System.Windows.Forms.Panel pnlBottomBar;
