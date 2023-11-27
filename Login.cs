@@ -13,7 +13,6 @@ namespace SecureCodeFull
     public partial class Login : Form
     {
         //Acceso a BBDD
-        ConexionBBDD.
 
         //Cositas
         protected bool isDragging = false;
