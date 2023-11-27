@@ -131,5 +131,11 @@
   <ItemGroup>
     <None Include="images\hyperspae.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassBBDD\ClassBBDD.csproj">
+      <Project>{c538d3ff-b316-4862-b78e-24deb69e8ca3}</Project>
+      <Name>ClassBBDD</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

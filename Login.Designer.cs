@@ -52,9 +52,10 @@ namespace SecureCodeFull
             this.btnExitLogin.FlatAppearance.BorderSize = 0;
             this.btnExitLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExitLogin.ForeColor = System.Drawing.Color.Transparent;
-            this.btnExitLogin.Location = new System.Drawing.Point(80, 407);
+            this.btnExitLogin.Location = new System.Drawing.Point(107, 501);
+            this.btnExitLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnExitLogin.Name = "btnExitLogin";
-            this.btnExitLogin.Size = new System.Drawing.Size(55, 62);
+            this.btnExitLogin.Size = new System.Drawing.Size(73, 76);
             this.btnExitLogin.TabIndex = 9;
             this.btnExitLogin.UseVisualStyleBackColor = false;
             this.btnExitLogin.Click += new System.EventHandler(this.button1_Click);
@@ -63,27 +64,32 @@ namespace SecureCodeFull
             // 
             this.txtBoxUser.BackColor = System.Drawing.Color.White;
             this.txtBoxUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBoxUser.Location = new System.Drawing.Point(180, 195);
+            this.txtBoxUser.Location = new System.Drawing.Point(240, 240);
+            this.txtBoxUser.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxUser.Name = "txtBoxUser";
-            this.txtBoxUser.Size = new System.Drawing.Size(188, 20);
+            this.txtBoxUser.Size = new System.Drawing.Size(250, 22);
             this.txtBoxUser.TabIndex = 1;
+            this.txtBoxUser.TextChanged += new System.EventHandler(this.txtBoxUser_TextChanged);
             // 
             // txtBoxPass
             // 
-            this.txtBoxPass.Location = new System.Drawing.Point(180, 230);
+            this.txtBoxPass.Location = new System.Drawing.Point(240, 283);
+            this.txtBoxPass.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxPass.Name = "txtBoxPass";
-            this.txtBoxPass.Size = new System.Drawing.Size(188, 20);
+            this.txtBoxPass.PasswordChar = '*';
+            this.txtBoxPass.Size = new System.Drawing.Size(249, 22);
             this.txtBoxPass.TabIndex = 2;
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
             this.lblUser.BackColor = System.Drawing.Color.Transparent;
-            this.lblUser.Font = new System.Drawing.Font("Aurebesh_english", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUser.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblUser.Location = new System.Drawing.Point(86, 196);
+            this.lblUser.Location = new System.Drawing.Point(115, 241);
+            this.lblUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(88, 19);
+            this.lblUser.Size = new System.Drawing.Size(72, 31);
             this.lblUser.TabIndex = 3;
             this.lblUser.Text = "User";
             // 
@@ -91,11 +97,12 @@ namespace SecureCodeFull
             // 
             this.lblPass.AutoSize = true;
             this.lblPass.BackColor = System.Drawing.Color.Transparent;
-            this.lblPass.Font = new System.Drawing.Font("Aurebesh_english", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPass.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblPass.Location = new System.Drawing.Point(80, 231);
+            this.lblPass.Location = new System.Drawing.Point(107, 284);
+            this.lblPass.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPass.Name = "lblPass";
-            this.lblPass.Size = new System.Drawing.Size(94, 19);
+            this.lblPass.Size = new System.Drawing.Size(79, 31);
             this.lblPass.TabIndex = 4;
             this.lblPass.Text = "Code";
             // 
@@ -103,46 +110,50 @@ namespace SecureCodeFull
             // 
             this.btnValidar.BackColor = System.Drawing.Color.Transparent;
             this.btnValidar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnValidar.Font = new System.Drawing.Font("Aurebesh_english", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnValidar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValidar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnValidar.Location = new System.Drawing.Point(257, 268);
+            this.btnValidar.Location = new System.Drawing.Point(343, 330);
+            this.btnValidar.Margin = new System.Windows.Forms.Padding(4);
             this.btnValidar.Name = "btnValidar";
-            this.btnValidar.Size = new System.Drawing.Size(111, 32);
+            this.btnValidar.Size = new System.Drawing.Size(148, 39);
             this.btnValidar.TabIndex = 5;
             this.btnValidar.Text = "Validar";
             this.btnValidar.UseVisualStyleBackColor = false;
-            this.btnValidar.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnValidar.Click += new System.EventHandler(this.validarUsuarioClick);
             // 
             // lblBenvingut
             // 
             this.lblBenvingut.AutoSize = true;
-            this.lblBenvingut.Font = new System.Drawing.Font("Sienar AF Chariot", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBenvingut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBenvingut.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.lblBenvingut.Location = new System.Drawing.Point(143, 321);
+            this.lblBenvingut.Location = new System.Drawing.Point(191, 395);
+            this.lblBenvingut.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBenvingut.Name = "lblBenvingut";
-            this.lblBenvingut.Size = new System.Drawing.Size(190, 17);
+            this.lblBenvingut.Size = new System.Drawing.Size(180, 25);
             this.lblBenvingut.TabIndex = 6;
             this.lblBenvingut.Text = "aaaaaaaaaaaaaa";
             // 
             // lblUserData
             // 
             this.lblUserData.AutoSize = true;
-            this.lblUserData.Font = new System.Drawing.Font("Sienar AF Chariot", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserData.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblUserData.Location = new System.Drawing.Point(143, 351);
+            this.lblUserData.Location = new System.Drawing.Point(191, 432);
+            this.lblUserData.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUserData.Name = "lblUserData";
-            this.lblUserData.Size = new System.Drawing.Size(69, 17);
+            this.lblUserData.Size = new System.Drawing.Size(64, 25);
             this.lblUserData.TabIndex = 7;
             this.lblUserData.Text = "label1";
             // 
             // lblComunicating
             // 
             this.lblComunicating.AutoSize = true;
-            this.lblComunicating.Font = new System.Drawing.Font("Sienar AF Chariot", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComunicating.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblComunicating.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblComunicating.Location = new System.Drawing.Point(143, 398);
+            this.lblComunicating.Location = new System.Drawing.Point(191, 490);
+            this.lblComunicating.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblComunicating.Name = "lblComunicating";
-            this.lblComunicating.Size = new System.Drawing.Size(69, 17);
+            this.lblComunicating.Size = new System.Drawing.Size(64, 25);
             this.lblComunicating.TabIndex = 8;
             this.lblComunicating.Text = "label1";
             this.lblComunicating.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -158,11 +169,11 @@ namespace SecureCodeFull
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SecureCodeFull.Properties.Resources.login3;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1024, 576);
+            this.ClientSize = new System.Drawing.Size(1365, 709);
             this.Controls.Add(this.lblComunicating);
             this.Controls.Add(this.lblUserData);
             this.Controls.Add(this.lblBenvingut);
@@ -176,8 +187,10 @@ namespace SecureCodeFull
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Secure Code";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Login_MouseMove);

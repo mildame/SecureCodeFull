@@ -11,7 +11,10 @@ using System.Windows.Forms;
 namespace SecureCodeFull
 {
     public partial class Login : Form
-    {
+    {   //MARC- conectar a BBDD en la clase ClassBBDD
+        ClassBBDD.ConexionBD accdata = new ClassBBDD.ConexionBD();
+        //MARC
+
         protected bool isDragging = false;
         protected Rectangle lastRectangle;
         protected string[] missatges = { "Benvingut, ", "ACCES DENEGAT", "Verificant nivell d'acces" };
@@ -72,24 +75,7 @@ namespace SecureCodeFull
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            bool userValidated = ValidateUser();
-            timerTick = 0;
-            lblBenvingut.Hide();
-            lblComunicating.Hide();
-            lblUserData.Hide();
 
-
-            if (userValidated)
-            {
-                double interval = timerLoadNext.Interval;
-
-                TICKCOUNT = LOADTIME / (interval / 1000);
-                timerLoadNext.Start();
-            }
-            else
-            {
-                timerFlash.Start();
-            }
         }
 
         private bool ValidateUser()
@@ -200,6 +186,33 @@ namespace SecureCodeFull
             else
             {
                 timerFlash.Dispose();
+            }
+        }
+
+        private void txtBoxUser_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void validarUsuarioClick(object sender, EventArgs e)
+        {
+            bool userValidated = ValidateUser();
+            timerTick = 0;
+            lblBenvingut.Hide();
+            lblComunicating.Hide();
+            lblUserData.Hide();
+
+
+            if (userValidated)
+            {
+                double interval = timerLoadNext.Interval;
+
+                TICKCOUNT = LOADTIME / (interval / 1000);
+                timerLoadNext.Start();
+            }
+            else
+            {
+                timerFlash.Start();
             }
         }
     }
