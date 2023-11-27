@@ -12,10 +12,13 @@ namespace SecureCodeFull
 {
     public partial class Login : Form
     {
+        //Acceso a BBDD
+        ConexionBBDD.
+
+        //Cositas
         protected bool isDragging = false;
         protected Rectangle lastRectangle;
         protected string[] missatges = { "Benvingut, ", "ACCES DENEGAT", "Verificant nivell d'acces" };
-        //protected string[,] userALL = new string[2,2]; //string [x,y] x diferent user table, y -> 0 = user 1 = password 2 = userData
         int[] lengths = new int[2];
         protected int timerTick;
         protected const double LOADTIME = 12; //TIMER LOAD TIME SEC
@@ -68,28 +71,6 @@ namespace SecureCodeFull
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            bool userValidated = ValidateUser();
-            timerTick = 0;
-            lblBenvingut.Hide();
-            lblComunicating.Hide();
-            lblUserData.Hide();
-
-
-            if (userValidated)
-            {
-                double interval = timerLoadNext.Interval;
-
-                TICKCOUNT = LOADTIME / (interval / 1000);
-                timerLoadNext.Start();
-            }
-            else
-            {
-                timerFlash.Start();
-            }
         }
 
         private bool ValidateUser()
@@ -200,6 +181,28 @@ namespace SecureCodeFull
             else
             {
                 timerFlash.Dispose();
+            }
+        }
+
+        private void btnValidar_Click(object sender, EventArgs e)
+        {
+            bool userValidated = ValidateUser();
+            timerTick = 0;
+            lblBenvingut.Hide();
+            lblComunicating.Hide();
+            lblUserData.Hide();
+
+
+            if (userValidated)
+            {
+                double interval = timerLoadNext.Interval;
+
+                TICKCOUNT = LOADTIME / (interval / 1000);
+                timerLoadNext.Start();
+            }
+            else
+            {
+                timerFlash.Start();
             }
         }
     }
