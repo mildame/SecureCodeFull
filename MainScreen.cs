@@ -18,15 +18,11 @@ namespace SecureCodeFull
             InitializeComponent();
         }
 
-        private void btnExitLogin_Click_1(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void crearNewForm()
         {
             frm = new prova();
-            frm.SetBounds(264, 91, panel1.Width, panel1.Height); //Leak de memoria, es poden crear infinits, ns com arreglar-ho ara mateix
+            Point pos = pnlForm.PointToScreen(new Point());
+            frm.SetBounds(pos.X, pos.Y, pnlForm.Width, pnlForm.Height); //Leak de memoria, es poden crear infinits, ns com arreglar-ho ara mateix
             frm.Show();
         }
 
@@ -51,6 +47,16 @@ namespace SecureCodeFull
         private void button4_Click(object sender, EventArgs e)
         {
             crearNewForm();
+        }
+
+        private void btnExit1_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnExit2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
