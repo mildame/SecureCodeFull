@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,13 +13,15 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\App\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,7 +36,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CircularProgressBar, Version=2.8.0.16, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
+      <HintPath>packages\CircularProgressBar.2.8.0.16\lib\net40\CircularProgressBar.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,13 +57,16 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WinFormAnimation, Version=1.6.0.4, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
+      <HintPath>packages\WinFormAnimation.1.6.0.4\lib\net40\WinFormAnimation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainScreen.cs">
+    <Compile Include="MainProvaMarc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainScreen.Designer.cs">
-      <DependentUpon>MainScreen.cs</DependentUpon>
+    <Compile Include="MainProvaMarc.Designer.cs">
+      <DependentUpon>MainProvaMarc.cs</DependentUpon>
     </Compile>
     <Compile Include="ModiyUser.cs">
       <SubType>Form</SubType>
@@ -63,17 +79,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="prova.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="prova.Designer.cs">
-      <DependentUpon>prova.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Splash.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Splash.Designer.cs">
-      <DependentUpon>Splash.cs</DependentUpon>
+    <Compile Include="SecureCoreG1DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecureCoreG1DataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -83,11 +92,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="splash.Designer.cs">
+      <DependentUpon>splash.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainProvaMarc.resx">
+      <DependentUpon>MainProvaMarc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainScreen.resx">
-      <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModiyUser.resx">
       <DependentUpon>ModiyUser.cs</DependentUpon>
@@ -97,12 +112,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="prova.resx">
-      <DependentUpon>prova.cs</DependentUpon>
+    <EmbeddedResource Include="splash.resx">
+      <DependentUpon>splash.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Splash.resx">
-      <DependentUpon>Splash.cs</DependentUpon>
-    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -112,6 +125,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SecureCoreG1DataSet.xsc">
+      <DependentUpon>SecureCoreG1DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SecureCoreG1DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SecureCoreG1DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SecureCoreG1DataSet.xss">
+      <DependentUpon>SecureCoreG1DataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -134,11 +158,89 @@
   <ItemGroup>
     <None Include="images\MAIN.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="images\hyperspae.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AF-ICB0-PRJ03I03\AF-ICB0-PRJ03I03.csproj">
+      <Project>{f6493c64-2f7f-4444-9369-9d5a0b49cef3}</Project>
+      <Name>AF-ICB0-PRJ03I03</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BBDD\BBDD.csproj">
+      <Project>{1dce458c-43bc-45a1-817c-f4f13bb7b55c}</Project>
+      <Name>BBDD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BotonBajarFichero\BotonBajarFichero.csproj">
+      <Project>{03a57649-1ed5-4ee7-902b-63bada30e2e7}</Project>
+      <Name>BotonBajarFichero</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EdiProcess\EdiProcess.csproj">
+      <Project>{0869f258-83fe-4654-b043-99c7421f296e}</Project>
+      <Name>EdiProcess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EF_Factories\EF_Factories\EF_Factories.csproj">
+      <Project>{3d092398-6c85-4be9-8fcb-9c21ec3eeed5}</Project>
+      <Name>EF_Factories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HashUtils\HashUtils.csproj">
+      <Project>{def18391-e966-44c5-9b0e-8abf25702afa}</Project>
+      <Name>HashUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mantenimentBase\mantenimentBase.csproj">
+      <Project>{978760f1-6a3a-4e59-aed3-c2b0b63db3f0}</Project>
+      <Name>mantenimentBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mantenimientoHerencia\mantenimientoHerencia.csproj">
+      <Project>{df9de9d3-e871-48fc-b5f5-6eb7bfef33f2}</Project>
+      <Name>mantenimientoHerencia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sprint4\Sprint4.csproj">
+      <Project>{f76eda5a-f8e1-4fa6-9f2e-e51a5c2ee087}</Project>
+      <Name>Sprint4</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SWLauchForm\SWLauchForm\UserControl.csproj">
+      <Project>{ecbe63e8-d3c7-4cac-a79e-1793c6e35333}</Project>
+      <Name>UserControl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\splashimage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orders_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pujar_ftp_transparent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\veure_llistats_transparent_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prodessar_edi_transparent_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\baixar_ftp_transparent_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\factories_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manteniment_opcions_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manteniment_user_256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\crystal_reports.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

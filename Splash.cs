@@ -10,73 +10,45 @@ using System.Windows.Forms;
 
 namespace SecureCodeFull
 {
-    public partial class Splash : Form
+    public partial class splash : Form
     {
-        protected bool isDragging = false;
-        protected Rectangle lastRectangle;
-        protected Random rnd = new Random();
-
-        public Splash()
+        public string Usuario { get; set; }
+        public splash()
         {
             InitializeComponent();
+            timer1.Start();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            circProgBar.Value = 0;
         }
-
-        private void Splash_MouseDown(object sender, MouseEventArgs e)
+      
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            // Incrementa el valor del ProgressBar en 10 unidades (10%)
+            circProgBar.Value += 2;
+
+            // Verifica si ha alcanzado el 100%
+            if (circProgBar.Value == circProgBar.Maximum)
             {
-                isDragging = true;
-                lastRectangle = new Rectangle(e.Location.X, e.Location.Y, this.Width, this.Height);
-            }
-        }
+                // Detén el Timer
+                timer1.Enabled = false;
 
-        private void Splash_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (isDragging)
-            {
-                int x = (this.Location.X + (e.Location.X - lastRectangle.X));
-                int y = (this.Location.Y + (e.Location.Y - lastRectangle.Y));
-
-                this.Location = new Point(x, y);
-            }
-        }
-
-        private void Splash_MouseUp(object sender, MouseEventArgs e)
-        {
-            isDragging = false;
-        }
-
-        private void timerLoadScreen_Tick(object sender, EventArgs e)
-        {
-            if (progBarSplash.Value != progBarSplash.Maximum)
-            {
-                int num = rnd.Next(5);
-
-                if (num > 3) 
-                {
-                    progBarSplash.Step = 10;
-                    progBarSplash.PerformStep();
-                }
-                else if (num == 4) 
-                {
-                    progBarSplash.Step = 15;
-                    progBarSplash.PerformStep();
-                }
-            } 
-            else if (progBarSplash.Value == progBarSplash.Maximum)
-            {
-                MainScreen main = new MainScreen();
-
-                this.Hide();
+                MainProvaMarc main = new MainProvaMarc();
+                main.Usuario = Usuario;
                 main.Show();
-
-                timerLoadScreen.Dispose();
+                this.Hide();
             }
         }
 
-        private void Splash_Load(object sender, EventArgs e)
+        private void circularProgressBar1_Click(object sender, EventArgs e)
         {
-            timerLoadScreen.Start();
+
         }
+     
+
+        private void timerSplash_Tick(object sender, EventArgs e)
+        {
+          
+        }
+
     }
 }

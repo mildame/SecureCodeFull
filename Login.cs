@@ -13,19 +13,21 @@ namespace SecureCodeFull
 {
     public partial class Login : Form
     {
+        public string Usuario { get; private set; }
         //SQL CONNECTION
-        SqlConnection conn;
-        String query = "Select * from users";
-        
+        BBDD.BBDDHeredado accdata = new BBDD.BBDDHeredado();
+        HashUtils.HashUser haser = new HashUtils.HashUser();
+
         //ORIGINAL VARIABLES
+
         protected bool isDragging = false;
         protected Rectangle lastRectangle;
-        protected string[] missatges = { "Benvingut, ", "ACCES DENEGAT", "Verificant nivell d'acces" };
-        //protected string[,] userALL = new string[2,2]; //string [x,y] x diferent user table, y -> 0 = user 1 = password 2 = userData
+        protected string[] missatges = { "Benvingut", "Verificant nivell d'acces", "ACCES DENEGAT", "NO S'HA EMPLENAT L'USUARI", "ERROR DE BDD"};
         int[] lengths = new int[2];
         protected int timerTick;
         protected const double LOADTIME = 12; //TIMER LOAD TIME SEC
-        protected double TICKCOUNT;
+        protected double TICKCOUNT = LOADTIME * 10;
+        protected int ERRTYPE;
         public Login()
         {
             InitializeComponent();
@@ -78,39 +80,64 @@ namespace SecureCodeFull
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            bool userValidated = ValidateUser();
-            timerTick = 0;
-            lblBenvingut.Hide();
-            lblComunicating.Hide();
-            lblUserData.Hide();
-
-
-            if (userValidated)
+            try
             {
-                double interval = timerLoadNext.Interval;
+                string query = "Select Password from Users where Login = '" + txtBoxUser.Text + "'";
+                var dataTable = accdata.PortarPerConsulta(query).Tables[0];
 
-                TICKCOUNT = LOADTIME / (interval / 1000);
-                timerLoadNext.Start();
+                if (txtBoxUser.Text != "" && txtBoxPass.Text != "")
+                {
+                    string password = dataTable.Rows[0]["Password"].ToString();
+
+                    if (dataTable.Rows.Count > 0)
+                    {
+                        string querySalt = "Select Salt from Users where Login = '" + txtBoxUser.Text + "'";
+                        string salt = accdata.PortarPerConsulta(querySalt).Tables[0].Rows[0]["Salt"].ToString();
+                        string contraseñaActual = haser.HashPassword(txtBoxPass.Text + salt);
+
+                        if (password == "12345aA" && txtBoxPass.Text == "12345aA")
+                        {
+                            this.Hide();
+                            ModiyUser frmpass = new ModiyUser(txtBoxUser.Text);
+                            frmpass.Usuario = txtBoxUser.Text;
+                            frmpass.ShowDialog();
+                        }
+                        else if (contraseñaActual == password)
+                        {
+                            timerLoadNext.Start();
+                        }
+                        else
+                        {
+                            ERRTYPE = 2;
+                            timerFlash.Start();
+                        }
+                    }
+                    else
+                    {
+                        ERRTYPE = 2;
+                        timerFlash.Start();
+                    }
+                }
+                else
+                {
+                    ERRTYPE = 3;
+                    timerFlash.Start();
+                }
             }
-            else
+            catch
             {
+                ERRTYPE = 2;
                 timerFlash.Start();
             }
         }
 
-        private bool ValidateUser()
-        {
-            if (txtBoxUser.Text.Equals("admin") && txtBoxPass.Text.Equals("admin")) return true;
-            
-            return false;
-        }
-
         private void LoadNextForm()
         {
-            Splash splash = new Splash();
+            splash spl = new splash();
 
             this.Hide();
-            splash.Show();
+            spl.Usuario = txtBoxUser.Text;
+            spl.Show();
         }
 
         private void timerLoadNext_Tick(object sender, EventArgs e)
@@ -120,29 +147,22 @@ namespace SecureCodeFull
                 LoadNextForm();
                 timerLoadNext.Dispose();
             }
-            /*else if (timerTick == 0)
-            {
-                lengths[0] = missatges[0].Length + txtBoxUser.Text.Length;
-                lengths[1] = userALL[0, 2].Length;
-                lengths[2] = missatges[2].Length;
-            }
-            */
             else
             {
                 switch (timerTick)
                 {
                     case (10):
-                        lblBenvingut.Text = missatges[0] + "admin";
+                        lblBenvingut.Text = missatges[0];
                         lblBenvingut.ForeColor = Color.Green;
                         lblBenvingut.Show();
                         break;
                     case (20):
-                        lblUserData.Text = "admin" + "\n" + "Administrador del Sistema";
+                        lblUserData.Text = "Usuari: " + txtBoxUser.Text;
                         lblUserData.ForeColor = Color.Green;
                         lblUserData.Show();
                         break;
                     case 40:
-                        lblComunicating.Text = missatges[2];
+                        lblComunicating.Text = missatges[1];
                         lblComunicating.ForeColor = Color.Green;
                         lblComunicating.Show();
                         break;
@@ -188,13 +208,18 @@ namespace SecureCodeFull
 
         private void timerFlash_Tick(object sender, EventArgs e)
         {
-            if(timerTick <= 12 && timerLoadNext.Enabled == false)
+            if (timerTick <= 12 && timerLoadNext.Enabled == false)
             {
-                lblBenvingut.Text = missatges[1];
+                if (ERRTYPE < 2 && ERRTYPE > missatges.Length)
+                {
+                    ERRTYPE = 1;
+                }
+
+                lblBenvingut.Text = missatges[ERRTYPE];
                 lblBenvingut.ForeColor = Color.Red;
 
                 if (timerTick % 2 != 0)
-                {       
+                {
                     lblBenvingut.Hide();
                 }
                 else
@@ -205,8 +230,15 @@ namespace SecureCodeFull
             }
             else
             {
-                timerFlash.Dispose();
+                timerTick = 0;
+                timerFlash.Stop();
+                lblBenvingut.Hide();
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
